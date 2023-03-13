@@ -1,0 +1,62 @@
+<nav aria-label="breadcrumb">
+    <ol class = "breadcrumb">
+        <li class ="breadcrumb-item"><a href="/">Home</a></li>
+        <li class ="breadcrumb-item" aria-current="page">Defects</li>
+    </ol>
+</nav>
+{{#each rows}}
+    <div class ="container">
+    <div class="box">
+      <div class ="info">
+        <div class="imageBox">
+          <img id ="image" src="/Images/{{this.image_name}}.jpg" alt="image">
+        </div>
+        <form method="post" name ="form" action ="#" id ="form">
+        <div class="text">
+            <h3 id="id">{{this.id}}</h3>
+            <input type = "hidden" name = "pid" value ="{{this.id}}">
+            <h3 id = "name">This Defect</h3>
+            <Label for = "desc" id = "descLabel" class = "Label"> Description:</Label>
+            <p id = "dec" name ="desc">{{this.desc}}</p>
+            
+            <Label for = "type" id = "typeLabel" class = "Label"> Type:</Label>
+            <select id="type" name ="type">
+            <option value ="{{this.type}}" selected>Current: {{this.type}}</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+           </select>
+           <div class="under">
+           <Label for = "notes" id = "notesLabel" class = "Label"> Notes:</Label>
+           <textarea name="notes" id="note"  rows="2" id = "textarea">{{this.note}}</textarea>
+           </div>
+          </div>
+      </div>
+  </div>
+  <div class="buttonBox">
+    <a id="previous" class ="button bt1" type ="button" > &#8592 Previous</a>
+    <a id="next" class ="button bt1" type ="button" >Next &#8594</a>
+  </div>
+  </div>
+  </form>
+  {{/each}}
+  <script>
+    const next = document.querySelector("#next");
+    const pre = document.querySelector("#previous");
+
+    next.addEventListener("click", e =>{
+        form = document.getElementById("form");
+        document.getElementById("form").action = "/defects/Next";
+        document.form.submit();
+        
+    })
+
+        pre.addEventListener("click", e =>{
+        form = document.getElementById("form");
+          document.getElementById("form").action = "/defects/Previous";
+        document.form.submit();
+        
+    })
+
+  </script>
